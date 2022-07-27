@@ -1,17 +1,15 @@
 <template>
   <div >
-    <h1>Usuario</h1>
-    <TarjetaUsuarioVue :id=this.id
+    <CardUsuarioVue
                     :nombre=this.name
                     :correo=this.email
                     :Telefono=this.phone
-                    :Sitio=this.website></TarjetaUsuarioVue>
+                    :Sitio=this.website></CardUsuarioVue>
 
-    <ul id="informacion">
-      <li v-for="info in infos" :key="info.id" >
-        <strong>ID:</strong> {{ info.id }} <br />
-        <strong>Título:</strong> {{ info.title }} <br />
-        <strong>Cuerpo:</strong> {{ info.body }} <br />
+    <ul class="col-sm-12">
+      <li v-for="post in posteos" :key="post.id" >
+        <strong>Título:</strong> {{ post.title }} <br />
+        <strong>Cuerpo:</strong> {{ post.body }} <br />
         <hr />
       </li>
     </ul>
@@ -22,12 +20,12 @@
 <script>
 import CardUsuarioVue from '@/components/CardUsuario'
 export default {
-  props: ['id', 'name', 'email', 'phone', 'website'],
+  props: ['id', 'name', 'email', 'phone'],
   name: 'Usuario',
   components: { CardUsuarioVue },
   data () {
     return {
-      infos: null
+      posteos: null
     }
   },
   mounted () {
@@ -38,7 +36,7 @@ export default {
       this.$http
         .get(`https://jsonplaceholder.typicode.com/users/${this.id}/posts`)
         .then((response) => {
-          this.infos = response.data
+          this.posteos = response.data
         })
         .catch((error) => {
           console.log(error)

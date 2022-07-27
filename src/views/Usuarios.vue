@@ -1,12 +1,13 @@
 <template>
   <div >
-    <h1>Usuarios</h1>
-    <div class="container" background = "green" v-for="dato in datos" :key="dato.id">
-        <strong>Nombre:</strong> {{ dato.name}} <br />
-        <strong>Correo:</strong> {{ dato.email}} <br />
-        <router-link  bg-dark bg-gradient :to="{ name: 'Usuarios',params: { id: dato.id, name: dato.name,  email: dato.email, phone: dato.phone,  website:dato.website}}">
-        <strong> Otros datos de {{ dato.name }}</strong></router-link >
-        <br/>
+    <h5> Usuarios:</h5>
+    <div class="container" background = "green" v-for="usuario in usuarios" :key="usuario.id">
+        <strong class="bi bi-emoji-smile"></strong> {{ usuario.name}} <router-link  bg-dark bg-gradient :to="{ name: 'PostsUsuario',params: { id: usuario.id, name: usuario.name,  email: usuario.email, phone: usuario.phone,  website:usuario.website}}">
+        <strong class="bi bi-file-earmark-post"></strong></router-link > <br />
+        <strong class="bi bi-envelope"></strong> {{ usuario.email}} <br />
+        <strong class="bi bi-building"></strong> {{ usuario.address.city}} <br />
+        <strong class="bi bi-telephone"></strong> {{ usuario.phone}} <br />
+        <strong class="bi bi-link"></strong> {{ usuario.website}} <br />
         <hr/>
     </div>
   </div>
@@ -18,7 +19,7 @@ export default {
   components: { },
   data () {
     return {
-      datos: []
+      usuarios: []
     }
   },
   created () {
@@ -30,7 +31,7 @@ export default {
         const { data } = await this.$http.get(
           'https://jsonplaceholder.typicode.com/users'
         )
-        this.datos = data
+        this.usuarios = data
         console.log(data)
       } catch (error) {
         console.log(error)

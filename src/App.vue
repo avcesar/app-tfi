@@ -1,16 +1,16 @@
 <template>
   <div id="nav">
-    <Header />
+    <Encabezado />
     <router-view />
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Encabezado from './components/Encabezado.vue'
 
 export default {
   components: {
-    Header,
+    Encabezado
   }
 }
 </script>

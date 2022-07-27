@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import Usuarios from '../views/Usuarios.vue'
+import PostsUsuario from '../views/PostsUsuario.vue'
 
 Vue.use(VueRouter)
 
@@ -11,7 +12,7 @@ const routes = [
     component: Usuarios
   },
   {
-    path: '/PostsUsuario/:id',
+    path: '/PostsUsuario/:id/',
     name: 'PostsUsuario',
     component: PostsUsuario,
     props: true

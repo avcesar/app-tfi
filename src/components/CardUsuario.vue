@@ -1,9 +1,8 @@
 <template>
   <div>
-      <strong>  ID:</strong> {{ id}}
-      <strong>  Nombre:</strong> {{ nombre}}
-      <strong>  Correo:</strong> {{ correo}}
-      <strong>  Teléfono:</strong> {{ Telefono}} <br />
+      <strong class="bi bi-emoji-smile"></strong> {{ nombre}}
+      <strong class="bi bi-envelope"></strong> {{ correo}}
+      <strong class="bi bi-telephone"></strong> {{ Telefono}}
       <hr/>
      </div>
 </template>
