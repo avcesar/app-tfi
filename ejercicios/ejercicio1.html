@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+    descripcion: {{descripcion}}
+    <br>
+    precio: {{precio}}
+    <br>
+    cantidad: {{cantidad}}
+    <br>
+    total: {{total}}
+
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                descripcion: 'Botella de agua',
+                precio: 1500,
+                cantidad: 15
+            },
+            computed:{
+                total(){
+                    return this.precio * this.cantidad
+                }
+            }
+        })
+    </script>
+</body>
+</html>

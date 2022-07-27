@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+    <li v-for="producto in this.productos">
+        descripcion: {{producto.descripcion}}
+        <br>
+        precio: {{producto.precio}}
+        <br>
+        cantidad: {{producto.cantidad}}
+        <br>
+        <br>
+    </li>
+
+    Cantidad de productos distintos: {{cantidadProductos}}
+    <br>
+    Cantidad total de productos {{totalProductos}}
+    <br>
+    importe total productos: {{importeProductos}}
+</div>
+
+<ul id="example-1">
+    <li v-for="item in items">
+      {{ item.mensaje }}
+      
+    </li>
+</ul>
+
+   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                productos: [{
+                    descripcion: 'Botella de agua',
+                    precio: 1500,
+                    cantidad: 15
+                },
+                {
+                    descripcion: 'Botella de coca',
+                    precio: 1500,
+                    cantidad: 23
+                },
+                {
+                    descripcion: 'Botella de sprite',
+                    precio: 1500,
+                    cantidad: 139
+                }]              
+            },
+            computed:{
+                cantidadProductos(){
+                    const calculo = this.productos.length;
+                    return calculo;
+                },
+                totalProductos(){
+                    const sumatotal  = this.productos.map(item => item.cantidad).reduce((prev, curr) => prev + curr, 0);
+                    return sumatotal   
+                },
+                importeProductos(){
+                    <!-- retorno el importe total sumatoria de cantidad * precio de cada uno -->
+                    <!-- const importetotal  = this.productos.map((item)=> {return this.productos.cantidad * this.productos.precio}) -->
+                    
+                    var importetotal=0;
+                    
+                    for (i=0; i < this.productos.length; i++){
+                        importetotal = importetotal + (this.productos[i].cantidad * this.productos[i].precio);
+                    }
+                    return importetotal;
+
+                }
+            }
+        })
+        
+    </script>
+    <script>
+        var example1 = new Vue({
+            el: '#example-1',
+            data: {
+            items: [
+                { mensaje: 'Foo' },
+                { mensaje: 'Bar' }
+            ]
+            }
+        })
+    </script>
+      
+</body>
+</html>
