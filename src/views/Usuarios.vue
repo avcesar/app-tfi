@@ -1,0 +1,41 @@
+<template>
+  <div >
+    <h1>Usuarios</h1>
+    <div class="container" background = "green" v-for="dato in datos" :key="dato.id">
+        <strong>Nombre:</strong> {{ dato.name}} <br />
+        <strong>Correo:</strong> {{ dato.email}} <br />
+        <router-link  bg-dark bg-gradient :to="{ name: 'Usuarios',params: { id: dato.id, name: dato.name,  email: dato.email, phone: dato.phone,  website:dato.website}}">
+        <strong> Otros datos de {{ dato.name }}</strong></router-link >
+        <br/>
+        <hr/>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Usuarios',
+  components: { },
+  data () {
+    return {
+      datos: []
+    }
+  },
+  created () {
+    this.getPost()
+  },
+  methods: {
+    async getPost () {
+      try {
+        const { data } = await this.$http.get(
+          'https://jsonplaceholder.typicode.com/users'
+        )
+        this.datos = data
+        console.log(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+}
+</script>
